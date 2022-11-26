@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JugadorFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="100">
+
+        <LinearLayout
+            android:background="@color/azulClaro"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="65"
+            android:orientation="horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imgVistaPapel"
+                    android:layout_width="175sp"
+                    android:layout_height="175sp"
+                    android:contentDescription="TODO"
+                    android:src="@drawable/paper__1_"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+
+                    android:id="@+id/imgVistaRoca"
+                    android:layout_width="175sp"
+                    android:layout_height="175sp"
+                    android:src="@drawable/stone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="gone"
+                    android:contentDescription="TODO" />
+
+                <ImageView
+
+                    android:id="@+id/imgVistaTijeras"
+                    android:layout_width="175sp"
+                    android:layout_height="175sp"
+                    android:src="@drawable/scissors"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="gone"
+                    android:contentDescription="@string/todo" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:background="@color/azulOscuro"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="35"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            >
+
+            <ImageButton
+                android:id="@+id/imgPiedra"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/stone"
+                android:contentDescription="TODO"
+                tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+            <ImageButton
+                android:id="@+id/imgPapel"
+                android:layout_width="0dp"
+
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/paper__1_"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:contentDescription="TODO" />
+
+            <ImageButton
+                android:id="@+id/imgTijeras"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/scissors"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:contentDescription="TODO" />
+
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
