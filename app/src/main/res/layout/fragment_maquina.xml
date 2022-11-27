@@ -22,6 +22,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <TextView
+                    android:id="@+id/txtContadorDerrotasMaquina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Derrotas: "
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtContVictoriasMaquina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Victorias: "
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="172dp"
+                    android:layout_height="22dp"
+                    android:text="Selección de la maquina:"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.036" />
+
                 <ImageView
                     android:id="@+id/imgVistaPapelMaquina"
                     android:layout_width="150sp"
@@ -39,26 +73,26 @@
                     android:id="@+id/imgVistaRocaMaquina"
                     android:layout_width="150sp"
                     android:layout_height="150sp"
+                    android:contentDescription="TODO"
                     android:src="@drawable/stone"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:visibility="gone"
-                    android:contentDescription="TODO" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
 
                     android:id="@+id/imgVistaTijerasMaquina"
                     android:layout_width="150sp"
                     android:layout_height="150sp"
+                    android:contentDescription="@string/todo"
                     android:src="@drawable/scissors"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:visibility="gone"
-                    android:contentDescription="@string/todo" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

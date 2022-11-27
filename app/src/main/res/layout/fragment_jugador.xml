@@ -40,26 +40,71 @@
                     android:id="@+id/imgVistaRoca"
                     android:layout_width="175sp"
                     android:layout_height="175sp"
+                    android:contentDescription="TODO"
                     android:src="@drawable/stone"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:visibility="gone"
-                    android:contentDescription="TODO" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
 
                     android:id="@+id/imgVistaTijeras"
                     android:layout_width="175sp"
                     android:layout_height="175sp"
+                    android:contentDescription="@string/todo"
                     android:src="@drawable/scissors"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="142dp"
+                    android:layout_height="27dp"
+                    android:text="Selección del jugador:"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:visibility="gone"
-                    android:contentDescription="@string/todo" />
+                    app:layout_constraintVertical_bias="0.035" />
+
+                <TextView
+                    android:id="@+id/txtContVictorias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Victorias: "
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtContadorDerrotas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Derrotas: "
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/btnIrRankings"
+                    android:layout_width="75dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:src="@drawable/ic_baseline_format_list_numbered_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

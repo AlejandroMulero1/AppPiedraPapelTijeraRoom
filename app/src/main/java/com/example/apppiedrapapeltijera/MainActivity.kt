@@ -1,10 +1,14 @@
 package com.example.apppiedrapapeltijera
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -14,7 +18,18 @@ class MainActivity : AppCompatActivity(), Controlador {
         setContentView(R.layout.activity_main)
 
     }
+    var nombreJugador=""
 
+    override fun onStart() {
+        super.onStart()
+        val tvJugador=findViewById<TextView>(R.id.textView)
+        nombreJugador= intent.getStringExtra("nombreUsuario").toString()
+        tvJugador.text="Seleccion de " + nombreJugador + ":"
+        findViewById<ImageButton>(R.id.btnIrRankings).setOnClickListener {
+            val i = Intent(this, Rankings::class.java)
+            startActivity(i)
+        }
+    }
     /**
      * Metodo que gestiona todo el juego
      * @param eleccionJugador:Parametro obtenido de "JugadorFragment" que contiene la opcion
@@ -27,7 +42,10 @@ class MainActivity : AppCompatActivity(), Controlador {
             mostrarImagen(numRandom)
             estado=comparar(eleccionJugador, numRandom)
             mostrarMensaje(estado)
-        //AjustarVariables
+            ajustarContadores(estado)
+            GlobalScope.launch {
+                PptApp.database.PPTDao().aumentarPartidasJugadas(nombreJugador)
+            }
     }
 
     /**
@@ -74,15 +92,15 @@ class MainActivity : AppCompatActivity(), Controlador {
         var mensaje=""
         if (estado=="empate"){
             titulo="Empate"
-            mensaje="Al menos no has perdido"
+            mensaje="Vuelve a intentarlo, los empates son para gente con miedo al exito"
         }
         else if (estado=="derrota"){
             titulo="Derrota"
-            mensaje="Has perdido, eres malo"
+            mensaje="Has perdido, vuelve a intentarlo o acepta la derrota"
         }
         else if (estado=="victoria"){
             titulo="Victoria"
-            mensaje="Qpro"
+            mensaje="Felicidades, has ganado"
         }
         builder.setTitle(titulo)
         builder.setMessage(mensaje)
@@ -112,5 +130,38 @@ class MainActivity : AppCompatActivity(), Controlador {
             findViewById<ImageView>(R.id.imgVistaTijerasMaquina).visibility=View.VISIBLE
             findViewById<ImageView>(R.id.imgVistaPapelMaquina).visibility=View.INVISIBLE
         }
+    }
+
+    //Contadores para el metodo ajustarContadores
+    var contWinPlayerLoseIA=0; //Victorias Jugador Derrotas Maquina
+    var contWinIALosePlayer=0;  //Victorias Maquina Derrotas Jugador
+    /**
+     * Metodo que ajusta los contadores de victorias y derrotas de cada jugador con los contadores
+     * previamente definidos
+     * @param estado: Parametro obtenido del metodo "comparar" que contiene el resultado
+     * de la comprobacion para saber que contador aumentar
+     */
+    fun ajustarContadores(estado:String){
+        val txtVictoriasJugador=findViewById<TextView>(R.id.txtContVictorias)
+        val txtVictoriasMaquina=findViewById<TextView>(R.id.txtContVictoriasMaquina)
+        val txtDerrotasJugador=findViewById<TextView>(R.id.txtContadorDerrotas)
+        val txtDerrotasMaquina=findViewById<TextView>(R.id.txtContadorDerrotasMaquina)
+
+        if (estado=="victoria"){
+            contWinPlayerLoseIA++
+        } else if (estado=="derrota"){
+            contWinIALosePlayer++
+        }
+        val distanciaMaxima=contWinPlayerLoseIA-contWinIALosePlayer
+        GlobalScope.launch {
+            val distanciaMaximaBD=PptApp.database.PPTDao().obtenerDistanciaMaxima(nombreJugador)
+            if(distanciaMaxima>distanciaMaximaBD){
+                PptApp.database.PPTDao().actualizarDistanciaMaxima(nombreJugador, distanciaMaxima)
+            }
+        }
+        txtVictoriasJugador.text="Victorias: " + contWinPlayerLoseIA
+        txtDerrotasJugador.text="Derrotas: " + contWinIALosePlayer
+        txtVictoriasMaquina.text="Victorias: " + contWinIALosePlayer
+        txtDerrotasMaquina.text="Derrotas: " + contWinPlayerLoseIA
     }
 }

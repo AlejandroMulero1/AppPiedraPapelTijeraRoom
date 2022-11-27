@@ -7,14 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class PptAdapter (
-        val tasks: List<PPT>,                   // Objeto Lista de tareas
-        val checkTask: (PPT) -> Unit,            // chequeo de tarea
-        val deleteTask: (PPT) -> Unit            // borrado de tarea
-    ) : RecyclerView.Adapter< PptAdapter.ViewHolder>() {    // Devuelve la vista
+        val tasks: List<PPT>,                                   // Objeto Lista de tareas
+        ) : RecyclerView.Adapter< PptAdapter.ViewHolder>() {    // Devuelve la vista
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {     // Muestra la vista (holder) y cada tarea de la lista (position)
             val item = tasks[position]                                         // Extrae la tarea de la lista
-            holder.bind(item, checkTask)                           // Muestra el item en la vista (ver más adelante)
+            holder.bind(item)                                                  // Muestra el item en la vista (ver más adelante)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {    // Contenedor de la vista (holder) y la posición de la tarea en la lista (position)
@@ -31,10 +29,8 @@ class PptAdapter (
 
             fun bind(                                   // función que une los elementos en la vista y prepara los listeners
                 task: PPT,
-                deleteTask: (PPT) -> Unit
             ) {
                 tvTask.text = task.nick
-                itemView.setOnClickListener { deleteTask(task) }
             }
         }
     }
