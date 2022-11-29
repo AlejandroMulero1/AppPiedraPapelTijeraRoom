@@ -30,7 +30,7 @@ class PptAdapter (
             fun bind(                                   // función que une los elementos en la vista y prepara los listeners
                 task: PPT,
             ) {
-                tvTask.text = task.nick
+                tvTask.text = "Nombre jugador=" + task.nick + " Partidas jugadas="+ task.partidasJugadas + " PuntuacionMaxima="+task.distanciaMaxima
             }
         }
     }
