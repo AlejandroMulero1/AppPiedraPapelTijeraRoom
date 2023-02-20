@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity(), Controlador {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -154,7 +153,7 @@ class MainActivity : AppCompatActivity(), Controlador {
         }
         val distanciaMaxima=contWinPlayerLoseIA-contWinIALosePlayer
         GlobalScope.launch {
-            val distanciaMaximaBD=PptApp.database.PPTDao().obtenerDistanciaMaxima(nombreJugador)
+            val distanciaMaximaBD= PptApp.database.PPTDao().obtenerDistanciaMaxima(nombreJugador)
             if(distanciaMaxima>distanciaMaximaBD){
                 PptApp.database.PPTDao().actualizarDistanciaMaxima(nombreJugador, distanciaMaxima)
             }

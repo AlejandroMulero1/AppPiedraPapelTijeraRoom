@@ -1,4 +1,4 @@
-package com.example.apppiedrapapeltijera
+package com.example.apppiedrapapeltijera.RoomDB
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

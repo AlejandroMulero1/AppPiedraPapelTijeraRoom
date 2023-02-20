@@ -1,14 +1,15 @@
-package com.example.apppiedrapapeltijera
+package com.example.apppiedrapapeltijera.RoomDB
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.apppiedrapapeltijera.R
 
 class PptAdapter (
-        val tasks: List<PPT>,                                   // Objeto Lista de tareas
-        ) : RecyclerView.Adapter< PptAdapter.ViewHolder>() {    // Devuelve la vista
+    val tasks: List<PPT>,                                   // Objeto Lista de tareas
+        ) : RecyclerView.Adapter<PptAdapter.ViewHolder>() {    // Devuelve la vista
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {     // Muestra la vista (holder) y cada tarea de la lista (position)
             val item = tasks[position]                                         // Extrae la tarea de la lista
@@ -27,7 +28,7 @@ class PptAdapter (
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {     // Clase con la vista
             val tvTask = view.findViewById<TextView>(R.id.tvTask)         // instancia del Textview de la vista
 
-            fun bind(                                   // función que une los elementos en la vista y prepara los listeners
+            fun bind(                               // función que une los elementos en la vista y prepara los listeners
                 task: PPT,
             ) {
                 tvTask.text = "Nombre jugador=" + task.nick + " Partidas jugadas="+ task.partidasJugadas + " PuntuacionMaxima="+task.distanciaMaxima

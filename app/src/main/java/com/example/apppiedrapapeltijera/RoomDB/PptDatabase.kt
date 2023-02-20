@@ -1,9 +1,9 @@
-package com.example.apppiedrapapeltijera
+package com.example.apppiedrapapeltijera.RoomDB
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.apppiedrapapeltijera.RoomDB.PPT
+import com.example.apppiedrapapeltijera.RoomDB.PPTDao
 
 
 @Database(entities = arrayOf(PPT::class), version = 1)

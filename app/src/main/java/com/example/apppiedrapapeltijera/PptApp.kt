@@ -2,6 +2,7 @@ package com.example.apppiedrapapeltijera
 
 import android.app.Application
 import androidx.room.Room
+import com.example.apppiedrapapeltijera.RoomDB.PptDatabase
 
 class PptApp: Application() {
     companion object {
@@ -9,6 +10,6 @@ class PptApp: Application() {
     }
     override fun onCreate() {
         super.onCreate()
-        PptApp.database =  Room.databaseBuilder(this, PptDatabase::class.java, "ppt-db").build()
+        database =  Room.databaseBuilder(this, PptDatabase::class.java, "ppt-db").build()
     }
 }

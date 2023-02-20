@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.apppiedrapapeltijera.RoomDB.PPT
+import com.example.apppiedrapapeltijera.RoomDB.PptAdapter
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -19,7 +21,7 @@ class Rankings : AppCompatActivity() {
         tasks = ArrayList()         // Se prepara la lista
         getTasks()                  // Se carga la lista de tareas a través del DAO
     }
-    fun setUpRecyclerView(tasks: List< PPT>) {    // Método que muestra la vista usando el adaptador
+    fun setUpRecyclerView(tasks: List<PPT>) {    // Método que muestra la vista usando el adaptador
         adapter = PptAdapter(tasks)
         recyclerView = findViewById(R.id.rvTask)
         recyclerView.setHasFixedSize(true)

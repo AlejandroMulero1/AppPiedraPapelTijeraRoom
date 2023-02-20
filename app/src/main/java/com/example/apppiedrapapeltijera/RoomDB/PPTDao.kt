@@ -1,6 +1,7 @@
-package com.example.apppiedrapapeltijera
+package com.example.apppiedrapapeltijera.RoomDB
 
 import androidx.room.*
+import com.example.apppiedrapapeltijera.RoomDB.PPT
 
 @Dao
 interface PPTDao {
