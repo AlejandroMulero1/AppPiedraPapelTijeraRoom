@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), Controlador {
     override fun onStart() {
         super.onStart()
         val tvJugador=findViewById<TextView>(R.id.textView)
-        nombreJugador= intent.getStringExtra("nombreUsuario").toString()
+        nombreJugador= intent.getStringExtra("name").toString()
         tvJugador.text="Seleccion de " + nombreJugador + ":"
         findViewById<ImageButton>(R.id.btnIrRankings).setOnClickListener {
             val i = Intent(this, Rankings::class.java)

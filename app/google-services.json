@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "848336659532",
+    "project_id": "primerproyecto-8aab6",
+    "storage_bucket": "primerproyecto-8aab6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848336659532:android:99d0a34e2253f8c0dec0e9",
+        "android_client_info": {
+          "package_name": "com.example.apppiedrapapeltijera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848336659532-ci65t6ki9j93rlhcnf2vssikrhpotq4e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG9kTS4L8NV1BCrynEYqH20-bCmLVINnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848336659532-0ivodbo0mquv4h3l6iso375hk99t7tqk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
