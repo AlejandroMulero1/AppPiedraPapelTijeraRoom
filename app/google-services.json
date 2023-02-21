@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "848336659532-6stkcruha5e8o7lj5vdf6kkoj06g8k3h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.apppiedrapapeltijera",
+            "certificate_hash": "c4770ea7699fc63b6b002281fd29d4ce4bf20a32"
+          }
+        },
+        {
           "client_id": "848336659532-ci65t6ki9j93rlhcnf2vssikrhpotq4e.apps.googleusercontent.com",
           "client_type": 3
         }
