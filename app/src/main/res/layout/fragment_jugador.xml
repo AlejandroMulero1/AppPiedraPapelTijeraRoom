@@ -63,8 +63,8 @@
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="142dp"
-                    android:layout_height="27dp"
+                    android:layout_width="173dp"
+                    android:layout_height="43dp"
                     android:text="Selección del jugador:"
                     android:textStyle="bold|italic"
                     app:layout_constraintBottom_toBottomOf="parent"
