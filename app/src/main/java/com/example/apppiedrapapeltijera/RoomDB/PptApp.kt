@@ -1,8 +1,7 @@
-package com.example.apppiedrapapeltijera
+package com.example.apppiedrapapeltijera.RoomDB
 
 import android.app.Application
 import androidx.room.Room
-import com.example.apppiedrapapeltijera.RoomDB.PptDatabase
 
 class PptApp: Application() {
     companion object {

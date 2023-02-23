@@ -1,5 +1,4 @@
 package com.example.apppiedrapapeltijera
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,18 +7,17 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import com.google.firebase.auth.FirebaseAuth
+import com.example.apppiedrapapeltijera.FirebaseDatabase.MetodosDatabase
+import com.example.apppiedrapapeltijera.RoomDB.PptApp
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), Controlador {
-    private lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
-
     var nombreJugador=""
 
     override fun onStart() {
@@ -45,9 +43,7 @@ class MainActivity : AppCompatActivity(), Controlador {
             estado=comparar(eleccionJugador, numRandom)
             mostrarMensaje(estado)
             ajustarContadores(estado)
-            GlobalScope.launch {
-                PptApp.database.PPTDao().aumentarPartidasJugadas(nombreJugador)
-            }
+            MetodosDatabase().actualizarPartidasJugadas(nombreJugador);
     }
 
     /**
@@ -155,12 +151,11 @@ class MainActivity : AppCompatActivity(), Controlador {
             contWinIALosePlayer++
         }
         val distanciaMaxima=contWinPlayerLoseIA-contWinIALosePlayer
-        GlobalScope.launch {
-            val distanciaMaximaBD= PptApp.database.PPTDao().obtenerDistanciaMaxima(nombreJugador)
-            if(distanciaMaxima>distanciaMaximaBD){
-                PptApp.database.PPTDao().actualizarDistanciaMaxima(nombreJugador, distanciaMaxima)
-            }
-        }
+      //  GlobalScope.launch {
+        //    val distanciaMaximaBD= PptApp.database.PPTDao().obtenerDistanciaMaxima(nombreJugador)
+
+        //}
+        MetodosDatabase().actualizarDistanciaMaxima(nombreJugador, distanciaMaxima)
         txtVictoriasJugador.text="Victorias: " + contWinPlayerLoseIA
         txtDerrotasJugador.text="Derrotas: " + contWinIALosePlayer
         txtVictoriasMaquina.text="Victorias: " + contWinIALosePlayer

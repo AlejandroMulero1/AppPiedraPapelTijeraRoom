@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.apppiedrapapeltijera.FirebaseDatabase.MetodosDatabase
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -13,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.FirebaseDatabase
 
 class Login : AppCompatActivity() {
 
@@ -98,10 +100,20 @@ class Login : AppCompatActivity() {
         auth.signInWithCredential(credential).addOnCompleteListener {
             //Si se obtienen los credenciales de manera exitosa
             if (it.isSuccessful){
-                //Mando al usuario a la pagina del juego pasando como parametro sus datos
-                val intent = Intent(this , MainActivity::class.java)
-                intent.putExtra("name" , account.displayName)
-                startActivity(intent)
+
+                //Se introduce en la BBDD al usuario como jugador.
+
+                    account.displayName?.let { it1 ->
+
+                        MetodosDatabase().Insertar(it1)
+
+                    }
+
+                    //Mando al usuario a la pagina del juego pasando como parametro sus datos
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("name", account.displayName)
+                    startActivity(intent)
+
             }else{
                 Toast.makeText(this, it.exception.toString() , Toast.LENGTH_SHORT).show()
             }
