@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.apppiedrapapeltijera.FirebaseDatabase.JugadorEntity
 import com.example.apppiedrapapeltijera.FirebaseDatabase.MetodosDatabase
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -15,6 +16,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Login : AppCompatActivity() {
 
@@ -104,9 +106,7 @@ class Login : AppCompatActivity() {
                 //Se introduce en la BBDD al usuario como jugador.
 
                     account.displayName?.let { it1 ->
-
-                        MetodosDatabase().Insertar(it1)
-
+                        Insertar(it1)
                     }
 
                     //Mando al usuario a la pagina del juego pasando como parametro sus datos
@@ -119,4 +119,15 @@ class Login : AppCompatActivity() {
             }
         }
     }
+
+    fun Insertar(nickname: String) {
+        var db = FirebaseFirestore.getInstance()
+        val jugadorRef = db.collection("Jugadores").document(nickname)
+        jugadorRef.get().addOnSuccessListener { documentSnapshot ->
+            if (!documentSnapshot.exists()) {
+                var jugadorNuevo = JugadorEntity(nickname, 0, 0)
+                db.collection("Jugadores").document(nickname).set(jugadorNuevo)
+            }
+        }
     }
+}

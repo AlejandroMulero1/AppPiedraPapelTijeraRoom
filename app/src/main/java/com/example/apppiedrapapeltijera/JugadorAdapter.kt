@@ -9,7 +9,7 @@ import com.example.apppiedrapapeltijera.FirebaseDatabase.JugadorEntity
 import com.example.apppiedrapapeltijera.RoomDB.PPT
 
 class JugadorAdapter (
-    val tasks: List<JugadorEntity>,                                   // Objeto Lista de tareas
+    val tasks: MutableList<JugadorEntity>,                                   // Objeto Lista de tareas
         ) : RecyclerView.Adapter<JugadorAdapter.ViewHolder>() {    // Devuelve la vista
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {     // Muestra la vista (holder) y cada tarea de la lista (position)

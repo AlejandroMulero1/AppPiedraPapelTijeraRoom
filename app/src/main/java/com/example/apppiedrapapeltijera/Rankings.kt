@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.apppiedrapapeltijera.FirebaseDatabase.JugadorEntity
 import com.example.apppiedrapapeltijera.FirebaseDatabase.MetodosDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -30,10 +31,17 @@ class Rankings : AppCompatActivity() {
     }
     fun getTasks()= runBlocking {       // Corrutina que saca de la base de datos la lista de tareas
         launch { // Inicio del hilo
-            var BD = MetodosDatabase()
-            BD.ObtenerLista()
-            tasks = BD.listaJugadores  // Se carga la lista de tareas
-            setUpRecyclerView(tasks)        // se pasa la lista a la Vista
+            var db = FirebaseFirestore.getInstance()
+            db.collection("Jugadores").get().addOnSuccessListener { documents ->
+                for (document in documents) {
+                    var jugadorNuevo = JugadorEntity()
+                    jugadorNuevo.username = document.getString("username").toString()
+                    jugadorNuevo.distanciaMaxima = document.getLong("distanciaMaxima")!!.toInt()
+                    jugadorNuevo.partidasJugadas = document.getLong("partidasJugadas")!!.toInt()
+                    tasks.add(jugadorNuevo)
+                }
+                setUpRecyclerView(tasks)
+            } // Se carga la lista de tareas
         }
     }
 }

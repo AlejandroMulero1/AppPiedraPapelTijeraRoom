@@ -2,13 +2,16 @@ package com.example.apppiedrapapeltijera
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import com.example.apppiedrapapeltijera.FirebaseDatabase.JugadorEntity
 import com.example.apppiedrapapeltijera.FirebaseDatabase.MetodosDatabase
 import com.example.apppiedrapapeltijera.RoomDB.PptApp
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -19,6 +22,7 @@ class MainActivity : AppCompatActivity(), Controlador {
         setContentView(R.layout.activity_main)
     }
     var nombreJugador=""
+    val BD = MetodosDatabase()
 
     override fun onStart() {
         super.onStart()
@@ -43,7 +47,7 @@ class MainActivity : AppCompatActivity(), Controlador {
             estado=comparar(eleccionJugador, numRandom)
             mostrarMensaje(estado)
             ajustarContadores(estado)
-            MetodosDatabase().actualizarPartidasJugadas(nombreJugador);
+            actualizarPartidasJugadas(nombreJugador);
     }
 
     /**
@@ -155,10 +159,49 @@ class MainActivity : AppCompatActivity(), Controlador {
         //    val distanciaMaximaBD= PptApp.database.PPTDao().obtenerDistanciaMaxima(nombreJugador)
 
         //}
-        MetodosDatabase().actualizarDistanciaMaxima(nombreJugador, distanciaMaxima)
+        actualizarDistanciaMaxima(nombreJugador, distanciaMaxima)
         txtVictoriasJugador.text="Victorias: " + contWinPlayerLoseIA
         txtDerrotasJugador.text="Derrotas: " + contWinIALosePlayer
         txtVictoriasMaquina.text="Victorias: " + contWinIALosePlayer
         txtDerrotasMaquina.text="Derrotas: " + contWinPlayerLoseIA
+    }
+
+    fun actualizarDistanciaMaxima(username: String, distanciaMaxima: Int){
+        var db = FirebaseFirestore.getInstance()
+        var jugador = JugadorEntity()
+        val jugadorRef = db.collection("Jugadores").document(username)
+
+        jugadorRef.get().addOnSuccessListener { documentSnapshot ->
+            if(documentSnapshot.exists()){
+
+                jugador.username = documentSnapshot.getString("username").toString()
+                jugador.distanciaMaxima = documentSnapshot.getLong("distanciaMaxima")!!.toInt()
+                jugador.partidasJugadas = documentSnapshot.getLong("partidasJugadas")!!.toInt()
+
+                if (jugador.distanciaMaxima<distanciaMaxima){
+                    jugador.distanciaMaxima = distanciaMaxima
+                    Log.d("a", "dist: " + distanciaMaxima)
+                    db.collection("Jugadores").document(username).set(jugador)
+                }
+            }
+        }
+    }
+
+    fun actualizarPartidasJugadas(username: String){
+        var db = FirebaseFirestore.getInstance()
+        var jugador = JugadorEntity()
+        val jugadorRef = db.collection("Jugadores").document(username)
+
+        jugadorRef.get().addOnSuccessListener { documentSnapshot ->
+            if(documentSnapshot.exists()){
+
+                jugador.username = documentSnapshot.getString("username").toString()
+                jugador.distanciaMaxima = documentSnapshot.getLong("distanciaMaxima")!!.toInt()
+                jugador.partidasJugadas = documentSnapshot.getLong("partidasJugadas")!!.toInt()
+
+                jugador.partidasJugadas++
+                db.collection("Jugadores").document(username).set(jugador)
+            }
+        }
     }
 }
