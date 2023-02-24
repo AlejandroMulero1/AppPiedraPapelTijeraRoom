@@ -23,7 +23,7 @@ class Rankings : AppCompatActivity() {
         getTasks()                  // Se carga la lista de tareas a través del DAO
     }
     fun setUpRecyclerView(tasks: List<JugadorEntity>) {    // Método que muestra la vista usando el adaptador
-        adapter = JugadorAdapter(tasks)
+        adapter = JugadorAdapter(tasks as MutableList<JugadorEntity>)
         recyclerView = findViewById(R.id.rvTask)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
